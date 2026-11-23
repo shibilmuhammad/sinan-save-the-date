@@ -170,7 +170,7 @@ function initFloatingMusicPlayer() {
 }
 
 /* ==========================================================================
-   3. REAL-TIME COUNTDOWN TIMER (10 January 2027 at 6:30 PM)
+   3. REAL-TIME COUNTDOWN TIMER (10 January 2027 at 6:00 PM)
    ========================================================================== */
 function initWeddingCountdown() {
   const daysEl = document.getElementById('days');
@@ -179,8 +179,8 @@ function initWeddingCountdown() {
   const secondsEl = document.getElementById('seconds');
   if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
 
-  // Target Date: 10 January 2027 18:30:00 (Local Time)
-  const targetDate = new Date('2027-01-10T18:30:00+05:30').getTime();
+  // Target Date: 10 January 2027 18:00:00 (Local Time)
+  const targetDate = new Date('2027-01-10T18:00:00+05:30').getTime();
 
   function updateTimer() {
     const now = new Date().getTime();
@@ -257,7 +257,7 @@ function initCalendarAndSharing() {
       generateGoogleCalendarLink(
         'Joint Wedding Reception — Mohammad Sinan & Mubhasira • Safanath & Thajuddin',
         'Sagar Auditorium, Panemangalore',
-        '2027-01-10T18:30:00',
+        '2027-01-10T18:00:00',
         '2027-01-10T23:00:00'
       );
     });
