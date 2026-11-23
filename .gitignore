@@ -1,0 +1,31 @@
+# Temporary test scripts and test images
+test_*.js
+test_*.png
+comp_*.png
+check_*.png
+check_*.jpg
+end_*.jpg
+f_*.jpg
+sec_*.jpg
+*.aac
+extracted_audio.*
+*_crop.png
+curr_*.png
+unscratched_*.png
+user_latest_*.png
+verify_*.png
+video_montage.jpg
+comparison_*.jpg
+comparison_*.png
+hole_mask.png
+step*.png
+devtools_dom.png
+all_4_inputs_stitched.png
+cd_shot_cropped.png
+celeb_shot_cropped.png
+shot_exact_reference_view.png
+
+# OS & Dependencies
+.DS_Store
+Thumbs.db
+node_modules/
