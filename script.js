@@ -38,16 +38,6 @@ function initCurtainStageExperience() {
   let hasStarted = false;
   let hasRevealed = false;
 
-  // Pre-warm video and audio decoders for instant mobile playback
-  if (video) {
-    video.preload = 'auto';
-    video.load();
-  }
-  if (bgAudio) {
-    bgAudio.preload = 'auto';
-    bgAudio.load();
-  }
-
   // Function to begin video playback and audio upon tap
   async function startCurtainOpening() {
     if (hasStarted) return;
@@ -89,9 +79,7 @@ function initCurtainStageExperience() {
         textRevealScheduled = true;
 
         // Freeze video and lock onto the seamless static stage background
-        try {
-          video.pause();
-        } catch (e) {}
+        video.pause();
         if (staticBg) {
           staticBg.style.opacity = '1';
         }
@@ -104,8 +92,8 @@ function initCurtainStageExperience() {
       }
 
       video.addEventListener('timeupdate', () => {
-        // Trigger once video has reached near the final frame (7.85s of 8.0s)
-        if (video.currentTime >= 7.85) {
+        // Only trigger once video has reached its very final frame (7.92s of 8.0s)
+        if (video.currentTime >= 7.92) {
           scheduleRevealAfterVideoCompletion();
         }
       });
@@ -113,13 +101,6 @@ function initCurtainStageExperience() {
       video.addEventListener('ended', () => {
         scheduleRevealAfterVideoCompletion();
       });
-
-      // Safety net: ensure stage never freezes even if mobile browser pauses timeupdate
-      setTimeout(() => {
-        if (!textRevealScheduled) {
-          scheduleRevealAfterVideoCompletion();
-        }
-      }, 8800);
     } else {
       setTimeout(() => {
         triggerTextReveal();
