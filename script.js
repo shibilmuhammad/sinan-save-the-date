@@ -1,6 +1,6 @@
 /**
  * Premium Joint Wedding Invitation Website — Interactive Logic
- * Couples: Mohammad Sinan UP & Mubhasira • Thajuddin P & Safanath UP
+ * Couples: Mohammad Sinan UP & Mubhasira • Safanath UP & Thajuddin P
  * Features: Curtain Opening Video Synchronizer, Cinematic Text Reveal,
  * Luxury Background Music Player, Real-time Countdown & Google Calendar Export.
  */
@@ -255,7 +255,7 @@ function initCalendarAndSharing() {
   if (saveAllBtn) {
     saveAllBtn.addEventListener('click', () => {
       generateGoogleCalendarLink(
-        'Joint Wedding Reception — Mohammad Sinan & Mubhasira • Thajuddin & Safanath',
+        'Joint Wedding Reception — Mohammad Sinan & Mubhasira • Safanath & Thajuddin',
         'Sagar Auditorium, Panemangalore',
         '2027-01-10T18:30:00',
         '2027-01-10T23:00:00'
@@ -273,7 +273,7 @@ function initCalendarAndSharing() {
           `*Joint Wedding Invitation*\n\n` +
           `With the blessings of Allah, we cordially invite you and your family to celebrate the wedding ceremonies of:\n\n` +
           `✦ *Mohammad Sinan UP* & *Mubhasira*\n` +
-          `✦ *Thajuddin P* & *Safanath UP*\n\n` +
+          `✦ *Safanath UP* & *Thajuddin P*\n\n` +
           `📅 *08 Jan 2027* — Nikkah (A&B Juma Masjid, Kunthoor)\n` +
           `📅 *09 Jan 2027* — Mehendi (Kaje House, Kunthoor)\n` +
           `📅 *10 Jan 2027* — Wedding Reception (Sagar Auditorium, Panemangalore)\n\n` +
