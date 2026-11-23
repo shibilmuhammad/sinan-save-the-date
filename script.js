@@ -46,28 +46,32 @@ function initCurtainStageExperience() {
     // 1. Smoothly fade out the tap-to-open overlay
     tapOverlay.classList.add('fade-out');
 
-    // 2. Play curtain video
+    // 2. Start the new background audio immediately from the beginning
+    if (bgAudio) {
+      bgAudio.currentTime = 0;
+      bgAudio.volume = 0.85;
+      bgAudio.play().then(() => {
+        if (musicToggle) {
+          musicToggle.classList.add('playing');
+        }
+      }).catch(err => {
+        console.log('Audio playback info:', err);
+      });
+    }
+
+    // 3. Play curtain video (muted so only the chosen song plays)
     if (video) {
-      video.muted = false; // unmuted playback since triggered by user gesture
+      video.muted = true;
       video.currentTime = 0;
       try {
-        const playPromise = video.play();
-        if (playPromise !== undefined) {
-          await playPromise;
-        }
-      } catch (err) {
-        console.warn('Video unmuted playback blocked, trying muted fallback:', err);
-        video.muted = true;
-        try {
-          await video.play();
-        } catch (e) {
-          console.error('Video playback error, showing stage directly:', e);
-          triggerTextReveal();
-          return;
-        }
+        await video.play();
+      } catch (e) {
+        console.error('Video playback error, showing stage directly:', e);
+        triggerTextReveal();
+        return;
       }
 
-      // 3. Monitor video playback to seamlessly catch the opening transition
+      // 4. Monitor video playback to seamlessly catch the opening transition
       let textRevealScheduled = false;
 
       function scheduleRevealAfterVideoCompletion() {
@@ -119,28 +123,12 @@ function initCurtainStageExperience() {
       document.body.classList.remove('initial-lock');
     }, 1300);
 
-    // Cross-fade background wedding nasheed/audio
-    setTimeout(() => {
-      if (bgAudio && bgAudio.paused) {
-        bgAudio.volume = 0;
-        bgAudio.play().then(() => {
-          let vol = 0;
-          const fadeInterval = setInterval(() => {
-            if (vol < 0.75) {
-              vol = Math.min(0.75, vol + 0.05);
-              bgAudio.volume = vol;
-            } else {
-              clearInterval(fadeInterval);
-            }
-          }, 100);
-          if (musicToggle) {
-            musicToggle.classList.add('playing');
-          }
-        }).catch(err => {
-          console.log('Audio autoplay info:', err);
-        });
-      }
-    }, 600);
+    // Ensure audio is playing if paused
+    if (bgAudio && bgAudio.paused) {
+      bgAudio.play().then(() => {
+        if (musicToggle) musicToggle.classList.add('playing');
+      }).catch(err => console.log('Audio fallback info:', err));
+    }
   }
 
   // Bind tap events
